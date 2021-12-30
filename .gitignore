@@ -1,4 +1,4 @@
 # Configuration Files
 
 *.ini
-/dbconn.php
+dbconn.*

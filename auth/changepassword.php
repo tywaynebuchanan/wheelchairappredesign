@@ -1,6 +1,4 @@
 <?php 
-// include('sessions/session.php');
-include('auth/auth.php');
 if(isset($_POST['submit']))
 {
     if(empty($_POST['newpassword']) && empty($_POST['confirmpassword']))
@@ -25,9 +23,13 @@ if(isset($_POST['submit']))
         if($rows > 0)
         {
             $update_query = mysqli_query($conn, "UPDATE tblusers set password = '$confirmpassword', IschangedPassword = 'Yes' WHERE username = '$login_session'");
+            header('Location: success.php');
+            $_SESSION['msg-color'] = "success";
             $_SESSION['message'] = "Password Updated!.";
-
+           
         }else{
+            header('Location: success.php');
+            $_SESSION['msg-color'] = "error";
             $_SESSION['message'] = "Password Failed";
         }
     }

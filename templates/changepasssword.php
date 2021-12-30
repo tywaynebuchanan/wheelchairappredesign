@@ -19,15 +19,10 @@
                               
                                 <div class="submit">
                                     <input type="submit" name = "submit" class="submit-btn" value="Change Password">
+                                  <a href="success.php" class="cancel-btn">Back</a>
                                 </div>
                               
                             </form>
-
-                            <div class="version">
-                                <p class="text">Wheelchair Management System</p>
-                                <p class="text">Version 1.1 December 2021</p>
-                                <a href="logout.php">Logout</a>
-                            </div>
                         </div>
                     </div>  
                   </div>

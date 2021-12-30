@@ -37,11 +37,8 @@ if(isset($_POST['submit']))
         $passkey = $data['passKey'];
         $name = $data['firstname']."".$data['lastname'];
         
-        if($role == 'Viewer' && $isActive == 'YES' && $isChangedPassword == 'No')
-        {
-            $link = 'changepassword.php?passkey ='.$passkey.'';
-            $_SESSION['passkey'] = $passkey;
-        }else if($role == 'Administrator' && $isActive == 'YES' )
+       
+        if($role == 'Administrator' && $isActive == 'YES' )
         {
             $link = 'success.php';
         }else if($role == 'Viewer' && $isActive == 'YES' && $isChangedPassword == 'Yes')

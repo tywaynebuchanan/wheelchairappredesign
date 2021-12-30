@@ -1,4 +1,4 @@
-<body>
+<body class="login-body-color">
        <main>
            <section>
               <div class="login-container">

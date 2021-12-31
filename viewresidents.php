@@ -15,9 +15,7 @@ $location = $_GET['location'];
 
 
 <div class="back-btn">
-<a href = <?php echo 'viewlist.php?home='.$home.'&location='.$location.''?> class="logout-btn">Back</a>
-
-
+<a href = <?php echo 'viewlist.php?home='.$home.'&location='.$_SESSION['location'].''?> class="logout-btn">Back</a>
 </div>
 
 <?php include('templates/resident.view.php');?>

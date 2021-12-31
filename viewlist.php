@@ -4,12 +4,13 @@ include('templates/header.php');
 include('templates/navbar.php');
 $home = $_GET['home'];
 $location = $_GET['location'];
+$_SESSION['location'] = $location;
 ?>
 
 <section class="section-hero">
 <div class="hero">
     <div class="container">
-    <h1 class="heading-primary"><?php echo $home;?></h1>
+    <h1 class="heading-primary"><?php echo $location;?></h1>
     </div>
     
 </div>
@@ -54,7 +55,7 @@ $location = $_GET['location'];
                  
 
                   echo '<tr><td>'.$firstname.'</td><td>'.$lastname.'</td><td>'.$location.'</td><td>'.$age.'</td>
-                  <td><a class = "info-btn c-success" href = "viewresidents.php?id='.$id.'&location='.$location.'&home='.$home.'">View</a></td><td><a class = "info-btn c-primary" href ="../edit.php?edit='.$id.'">Edit</a></td><td>
+                  <td><a class = "info-btn c-success" href = "viewresidents.php?id='.$id.'&home='.$home.'&location='.$location.'">View</a></td><td><a class = "info-btn c-primary" href ="../edit.php?edit='.$id.'">Edit</a></td><td>
                   <a class = "info-btn c-info" href ="../repairdata.php?repair='.$id.'">Repairs</a></td></tr>';
               }
             }else{

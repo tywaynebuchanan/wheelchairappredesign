@@ -40,7 +40,7 @@ if(isset($_POST['submit']))
        
         if($role == 'Administrator' && $isActive == 'YES' )
         {
-            $link = 'success.php';
+            $link = 'dashboard.php';
         }else if($role == 'Viewer' && $isActive == 'YES' && $isChangedPassword == 'Yes')
         {
             $link = 'dashboard.php';

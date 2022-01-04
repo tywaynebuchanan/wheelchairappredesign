@@ -42,6 +42,7 @@ body{
     margin: 0 auto;
 }
 
+
 /*Login CSS*/
 
 .login-form
@@ -108,13 +109,14 @@ body{
     outline: none;
     border: none;
     cursor: pointer;
-    background-color: var(--main-color);
+   
    width: 100%;
    padding: .5rem 0;
    color: var(--light-grey);
    border-radius: 5px;
    margin-top: 1rem;
    font-size: 1rem;
+   text-align: center;
 }
 
 .version
@@ -197,9 +199,30 @@ body{
     background-color:#17a2b8;
 }
 
+.c-grey
+{
+    background-color: #222222;
+}
+
+.c-main
+{
+    background-color: var(--main-color);
+}
+
+.c-danger
+{
+    background-color: var(--danger);
+}
+.message
+{
+    width: 100%;
+    display: flex;
+    margin: 0 ;
+    align-items: flex-start;
+    padding: 1rem 1rem;
+}
 .cancel-btn
 {
-    text-decoration: none;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -208,6 +231,10 @@ body{
   color: #fff;
   padding: .5rem;
   border-radius: 5px;
+  width: 100%;
+  border: none;
+  outline: none;
+  font-size: 1rem;
 }
 
 /*Navbar CSS*/
@@ -276,6 +303,29 @@ body{
     padding: 1rem 2rem;
    
 }
+
+.change-p-form
+{
+  width: 800px;
+  margin: 0 auto;
+  padding: 1rem 0;
+ 
+   
+}
+/*Change Password CSS*/
+.change-form .change-row
+{
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+    grid-column-gap: 0.6rem;
+}
+
+.change-form input{
+    border: none;
+    outline:none;
+}
+
 
 
 /*Footer */
@@ -381,7 +431,7 @@ tbody{
 
 .back-btn
 {
-    padding: 2rem 0;
+    padding: 1rem 0;
     margin: 0 auto;
     max-width: 1100px;
 }
@@ -456,4 +506,107 @@ tbody{
     object-fit: fit;
     padding: .75rem;
     border-radius: 15px;
+}
+
+/*Resident Form */
+
+
+.add-form
+{
+    padding: 3rem 0rem;
+   
+}
+.form-container
+{
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 1rem 0;
+    background-color: white;
+    border: 1px solid var(--dark-grey-one);
+    border-radius: 10px;
+
+}
+
+.input
+{
+   margin: .5rem;
+   padding: 0 3rem;
+
+}
+.resident-form 
+input[type = text], 
+.input input[type = password], 
+input[type = date],
+select
+{
+    width: 100%;
+    margin: .5rem 0;
+    padding: 1rem .5rem;
+    outline: none;
+    border: none;
+    border-radius: 5px;
+    border: 1px solid #222222;
+   
+}
+
+.resident-form input::placeholder{
+    font-weight: 500;
+}
+
+.sub-btn{
+    width: 75%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    column-gap: 20px;
+}
+
+label{
+    font-weight: 600;
+    font-size: 1rem;
+}
+
+/*Section Change Passward*/
+.section-change-p
+{
+    height: 50vh;
+}
+/*My Account */
+
+.myaccount
+{
+    width: 1100px;
+    margin: 0 auto;
+    padding: 1rem 0;
+    height: 50vh;
+    
+}
+
+.options
+{
+    display: flex;
+    justify-content: space-between;
+}
+
+.option-btn
+{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+
+}
+
+.option-btn .link-btn
+{
+    color: var(--body-color);
+    border-radius: 10px;
+    padding: .5rem 1.2rem;
+    margin-right: 2rem;
+   
+}
+
+.user-info p
+{
+    font-size: 1.2rem;
+    margin-top: .5rem;
 }

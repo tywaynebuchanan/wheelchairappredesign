@@ -6,11 +6,16 @@ include('templates/navbar.php');
 
 <body>
     <?php include('templates/hero.php') ?>
-    <?php if(!empty($_SESSION['message'])) {?>
-        <p class="error"><i class="fas fa-times"></i> <?php echo $_SESSION['message'];?></p>
-        <?php 
-            unset($_SESSION['message']);
-    } ?>
+
+        <?php if(isset($_SESSION['message'])) 
+            {
+                echo $_SESSION['message'];
+                unset($_SESSION['message']);
+            }
+        ?>
+        
+    
+    
     <?php include('templates/info.php');?>
 
 <?php include('templates/footer.php') ?>

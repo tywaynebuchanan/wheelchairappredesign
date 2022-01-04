@@ -24,8 +24,6 @@ if(isset($_POST['submit']))
         }
 
         $username = validate($username);
-        // $password = validate($password);
-
         $query = mysqli_query($conn, "SELECT * from tblusers where username = '$username' AND password = '$password'");
         $rows = mysqli_num_rows($query);
         $data = mysqli_fetch_array($query);
@@ -51,6 +49,9 @@ if(isset($_POST['submit']))
             $_SESSION['login_user'] = $username;
             $_SESSION['name'] = $name;
             header("Location:".$link."");
+            $time = time();
+            // $sql = mysqli_query($conn,"UPDATE tblusers set timeloggedin =now() where username = '$username'");
+            $sql2 = mysqli_query($conn,"INSERT INTO tbllogged (username,timeloggedin) VALUES ('$username','$time')");
 
         }else{
             $_SESSION['message'] = "Incorrect Login information!";

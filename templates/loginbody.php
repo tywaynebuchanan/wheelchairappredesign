@@ -19,7 +19,7 @@
                               
                                <a href="" class="link-password">Forgot Password</a>
                                 <div class="submit">
-                                    <input type="submit" name = "submit" class="submit-btn" value="Login">
+                                    <input type="submit" name = "submit" class="submit-btn c-main" value="Login">
                                 </div>
                               
                             </form>

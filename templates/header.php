@@ -1,3 +1,4 @@
+<?date_default_timezone_set("America/Bogota"); ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>

@@ -28,7 +28,7 @@ if(isset($_POST['submit']))
         $rows = mysqli_num_rows($query);
         $data = mysqli_fetch_array($query);
 
-      
+        $id = $data['id'];
         $role = $data['role'];
         $isActive = $data['isActive'];
         $isChangedPassword = $data['IschangedPassword'];
@@ -38,7 +38,7 @@ if(isset($_POST['submit']))
        
         if($role == 'Administrator' && $isActive == 'YES' )
         {
-            $link = 'dashboard.php';
+            $link = 'admin.php';
         }else if($role == 'Viewer' && $isActive == 'YES' && $isChangedPassword == 'Yes')
         {
             $link = 'dashboard.php';
@@ -51,7 +51,7 @@ if(isset($_POST['submit']))
             header("Location:".$link."");
             $time = time();
             // $sql = mysqli_query($conn,"UPDATE tblusers set timeloggedin =now() where username = '$username'");
-            $sql2 = mysqli_query($conn,"INSERT INTO tbllogged (username,timeloggedin) VALUES ('$username','$time')");
+            $sql2 = mysqli_query($conn,"INSERT INTO tbllogged (username,timeloggedin,userid) VALUES ('$username','$time','$id')");
 
         }else{
             $_SESSION['message'] = "Incorrect Login information!";

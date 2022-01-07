@@ -434,6 +434,16 @@ tbody{
     padding: 1rem 0;
     margin: 0 auto;
     max-width: 1100px;
+    display: flex;
+    justify-content: space-between;
+    /*align-items: center; */
+}
+
+.btn-end
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 
@@ -610,3 +620,44 @@ label{
     font-size: 1.2rem;
     margin-top: .5rem;
 }
+
+td .pass 
+{
+    padding: .5rem;
+    border: 1px solid grey;
+}
+
+/*Tool Tip CSS */
+
+.tooltip
+{
+    position: relative;
+}
+
+.tooltip .tooltiptext
+{
+    visibility: hidden;
+  width: 100px;
+  background-color: var(--main-color);
+  color: #fff;
+  text-align: center;
+  padding: 5px 0;
+  border-radius: 6px;
+  position: absolute;
+  z-index: 1;
+  top: -5px;
+  right: 105%;
+}
+
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+    cursor: pointer;
+  }
+
+  .c-s{
+    color: darkgreen;
+  }
+
+  .c-d{
+    color:var(--danger);
+  }

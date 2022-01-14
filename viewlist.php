@@ -2,12 +2,24 @@
 include('sessions/session.php');
 include('templates/header.php');
 include('templates/navbar.php');
+include('processes/functions.php');
 $home = $_GET['home'];
 $location = $_GET['location'];
 $_SESSION['location'] = $location;
 
 ?>
 
+<?php 
+  $query_death = mysqli_query($conn,"SELECT * FROM tblresidentdata WHERE location1 = '$home' AND status != 'Deceased'");
+  $query = mysqli_query($conn,"SELECT * FROM tblresidentdata WHERE location1 = '$home' ");
+  $query_count = mysqli_query($conn, "SELECT * from tblresidentdata WHERE gender = 'Male' and location1 = '$home' AND status != 'Deceased'");
+  $query_female = mysqli_query($conn, "SELECT * from tblresidentdata WHERE gender = 'Female' and location1 = '$home' AND status != 'Deceased'");
+  $count = mysqli_num_rows($query_death);
+  $count_m =mysqli_num_rows($query_count);
+  $count_f =mysqli_num_rows($query_female);
+  
+
+?>
 <section class="section-hero">
 <div class="hero">
     <div class="container">
@@ -23,60 +35,18 @@ $_SESSION['location'] = $location;
     <?php unset($_SESSION['message']);} ?>
 </div>
 
-<?php 
-
-function fetch_data()
-{
-  global $conn;
-  global $home;
-  $output = '';
-  $query = mysqli_query($conn,"SELECT * FROM tblresidentdata WHERE location1 = '$home'");
-$count = mysqli_num_rows($query);
-
-  while ($row_data = mysqli_fetch_assoc($query))
-{
-    $firstname = $row_data['firstname'];
-    $lastname = $row_data['lastname'];
-    $location = $row_data['location'];
-    $home = $row_data['location1'];
-    $age = $row_data['age'];
-    $gender = $row_data['gender'];
-   $id = $row_data['id'];
-   
-
-    $output .= '<tr><td>'.$firstname.'</td><td>'.$lastname.'</td><td>'.$gender.'</td><td>'.$location.'</td><td>'.$age.'</td>
-    <td><a class = "info-btn c-success" href = "viewresidents.php?id='.$id.'&home='.$home.'&location='.$location.'"><i class="far fa-eye"></i></a></td><td><a class = "info-btn c-primary" href ="../edit.php?edit='.$id.'"><i class="fas fa-user-edit"></i></a></td><td>
-    <a class = "info-btn c-info" href ="../repairdata.php?repair='.$id.'"><i class="fas fa-tools"></i></a></td></tr>';
-}
-return $output;
-}
-
-
-
-
-
-
-?>
-
 <div class="back-btn">
-<a href="dashboard.php" class="logout-btn"><i class="fas fa-arrow-circle-left"></i> Back</a>
-<a href="filterdata.php?home=<?php echo $home?>&location=<?php echo $location?>&gender=Male" id="btn" class="logout-btn"><i class="fas fa-mars"></i> Male</a>
-<a href="filterdata.php?home=<?php echo $home?>&location=<?php echo $location?>&gender=Female" id="btn" class="logout-btn"><i class="fas fa-venus"></i> Female</a>
-<a href="filterdata.php?home=<?php echo $home?>&location=<?php echo $location?>&wheelchair=Yes" id="btn" class="logout-btn"><i class="fas fa-wheelchair"></i> In WC</a>
-<a href="testpdf.php?home=<?php echo $home?>&location=<?php echo $location?>" id="btn" class="logout-btn"><i class="fas fa-wheelchair"></i>Print</a>
-<!-- <div class="btn-end">
-  <form action="testpdf.php" method = "post">
-    <input type="submit" name = "print" class = "logout-btn" value="Print">
-  </form>
-</div> -->
-
+  <a href="dashboard.php" class="logout-btn"><i class="fas fa-arrow-circle-left"></i> Back</a>
+  <a href="filterdata.php?home=<?php echo $home?>&location=<?php echo $location?>&gender=Male" id="btn" class="logout-btn"><i class="fas fa-mars"></i> Male</a>
+  <a href="filterdata.php?home=<?php echo $home?>&location=<?php echo $location?>&gender=Female" id="btn" class="logout-btn"><i class="fas fa-venus"></i> Female</a>
+  <a href="printpdf.php?home=<?php echo $home?>&location=<?php echo $location?>" id="btn" class="logout-btn"><i class="fas fa-print"></i> Print</a>
+  <div class="btn-end">
+  <p>Resident Count:<?php echo $count;?></p>
+  <p><i class="fas fa-male"></i> : <?php echo $count_m;?></p>
+  <p><i class="fas fa-female"></i> : <?php echo $count_f;?></p>
+  </div>
 </div>
 
-<?php
-
-
-
-?>
 <section>
     <div class="view-res-data">
     <div class="table-info container">
@@ -86,6 +56,7 @@ return $output;
           <td>First Name</td>
           <td>Last Name</td>
           <td>Gender</td>
+          <td>Mobility</td>
           <td>Location</td>
           <td>Age</td>
           <td colspan = '3'>Action</td>
@@ -93,15 +64,30 @@ return $output;
       <thead>
       <tbody id="tbody">
           <?php 
-            
-          echo fetch_data();
-          ?>
+              while ($row_data = mysqli_fetch_assoc($query))
+              {
+                  $firstname = $row_data['firstname'];
+                  $lastname = $row_data['lastname'];
+                  $location = $row_data['location'];
+                  $home = $row_data['location1'];
+                  $age = $row_data['age'];
+                  $gender = $row_data['gender'];
+                  $isMobile = $row_data['wheelchairbound'];
+                 $id = $row_data['id'];
+                 $deceased = $row_data['status'];
+                 
+              
+                 echo (($deceased !='Deceased')?'<tr><td>'.$firstname.'</td><td>'.$lastname.'</td><td>'.$gender.'</td><td>'.(($isMobile =='Yes')?'<i class="fas fa-wheelchair"></i>':'<i class="fas fa-walking"></i>').'</td><td>'.$location.'</td><td>'.$age.'</td>
+                 <td><a class = "info-btn c-success" href = "viewresidents.php?id='.$id.'&home='.$home.'&location='.$location.'"><i class="far fa-eye"></i></a></td><td><a class = "info-btn c-primary" href ="../edit.php?edit='.$id.'"><i class="fas fa-user-edit"></i></a></td><td>
+                 <a class = "info-btn c-info" href ="../repairdata.php?repair='.$id.'"><i class="fas fa-tools"></i></a></td></tr>':'<tr class = "c-danger c-light"><td>'.$firstname.'</td><td>'.$lastname.'</td><td>'.$gender.'</td><td>'.(($isMobile =='Yes')?'<i class="fas fa-wheelchair"></i>':'<i class="fas fa-walking"></i>').'</td><td>'.$location.'</td><td>'.$age.'</td>
+                 <td><a class = "info-btn c-success" href = "viewresidents.php?id='.$id.'&home='.$home.'&location='.$location.'"><i class="far fa-eye"></i></a></td><td><a class = "info-btn c-primary" href ="../edit.php?edit='.$id.'"><i class="fas fa-user-edit"></i></a></td><td>
+                 <a class = "info-btn c-info" href ="../repairdata.php?repair='.$id.'"><i class="fas fa-tools"></i></a></td></tr>');
+              }
 
-          
+      
+          ?>
       </tbody>
     </table>
-    <!-- <p>Resident Count:<?php $count?></p> -->
-   
     </div>
     </div>
 </section>

@@ -1,29 +1,77 @@
+<?php include('processes/summary.php');
+
+$males = ['tblresidentdata','gender','Male'];
+$residents = 'tblresidentdata';
+$females = array('tblresidentdata','gender','Female');   
+$wheelchair = ['tblresidentdata','wheelchairbound','Yes'];
+$gender = ['Female','Male'];
+$names = ['SP','MFH','GOH','JER','BA','WM','JL'];
+
+function Totals($table,$col,$field){
+    
+    global $conn;
+    $count = mysqli_query($conn, "SELECT * FROM $table WHERE $col = '$field' and status !='Deceased'");
+    $res = mysqli_num_rows($count);
+    echo $res;
+}
+
+function TotalNew($home){
+    global $conn;
+    $c = mysqli_query($conn, "SELECT * from tblresidentdata WHERE location1 = '$home' and status != 'Deceased'");
+    $result = mysqli_num_rows($c);
+    echo $result;
+}
+function WC($home){
+    global $conn;
+    $c = mysqli_query($conn, "SELECT * from tblresidentdata WHERE location1 = '$home' and wheelchairbound = 'Yes' AND
+    status !='Deceased'");
+    $result = mysqli_num_rows($c);
+    echo $result;
+}
+
+function Gender($home,$gender){
+    global $conn;
+    $c = mysqli_query($conn, "SELECT * from tblresidentdata WHERE location1 = '$home' and gender = '$gender' and
+    status !='Deceased'");
+    $result = mysqli_num_rows($c);
+    echo $result;
+}
+
+
+function res_count($table){
+    global $conn;
+    $count = mysqli_query($conn, "SELECT * FROM $table WHERE status !='Deceased'");
+    $res = mysqli_num_rows($count);
+    echo $res;
+}
+
+
+
+?>
 <section class="section-info">
 
     <div class="container">
-
     <div class="boxes">
     <div class="box">
         <h3>Total Residents</h3>
         <i class="fas fa-users"></i>
-        183    </div>
-
-
+        <?php res_count($residents);?></div>
         <div class="box">
         <h3>Total Males</h3>
         <i class="fas fa-male"></i>
-        96    </div>
+        <?php Totals($males[0],$males[1],$males[2]);?>
+   </div>
 
 
         <div class="box">
         <h3>Total Females</h3>
         <i class="fas fa-female"></i>
-        87         </div>
+        <?php Totals($females[0],$females[1],$females[2]);?>  </div>
 
          <div class="box">
         <h3>Total in Wheelchairs</h3>
         <i class="fas fa-wheelchair"></i>
-        170         </div>
+        <?php Totals($wheelchair[0],$wheelchair[1],$wheelchair[2]);?> </div>
     </div>
         
 
@@ -41,55 +89,57 @@
             <td># of Residents in WheelChair</td>
             <td># of Females</td>
             <td># of Males</td>
-            <!-- <td># of Residents in Admitted in Hospital</td> -->
+           
         
         </tr>
     </thead>
             
         <tbody>
             <tr><td><a class = "table-links" href = "viewlist.php?home=SP&location=Sophie's Place">Sophie's Place</a></td>
-            <td>20</td>
-         <td>20</td>
-         <td>5</td>
-         <td>15</td></tr>
+            <td><?php TotalNew($names[0]);?></td>
+         <td><?php WC($names[0]);?></td>
+         <td><?php Gender($names[0],$gender[0]);?></td>
+         <td><?php Gender($names[0],$gender[1]);?></td></tr>
 
             <tr><td><a class = "table-links" href = "viewlist.php?home=MFH&location=My Father's House">My Father's House</a></td>
-            <td>37</td>
-         <td>35</td>
-         <td>16</td>
-         <td>21</td>
-        
+            <td><?php TotalNew($names[1]);?></td>
+         <td><?php WC($names[1]);?></td>
+         <td><?php Gender($names[1],$gender[0]);?></td>
+         <td><?php Gender($names[1],$gender[1]);?></td></tr>
         </tr>
-            <tr><td><a class = "table-links" href = "viewlist.php?home=GOH&location=Gift of Hope">Gift of Hope</a></td><td>24</td>
-         <td>17</td>
-         <td>9</td>
-         <td>15</td></tr>
+            <tr><td><a class = "table-links" href = "viewlist.php?home=GOH&location=Gift of Hope">Gift of Hope</a>
+        </td> 
+        <td><?php TotalNew($names[2]);?></td>
+         <td><?php WC($names[2]);?></td>
+         <td><?php Gender($names[2],$gender[0]);?></td>
+         <td><?php Gender($names[2],$gender[1]);?></td></tr>
+        </tr>
             <tr><td><a class = "table-links" href = "viewlist.php?home=JER&location=Jerusalem">Jerusalem</a></td>
-            <td>50</td>
-         <td>50</td>
-         <td>27</td>
-         <td>23</td>
+            <td><?php TotalNew($names[3]);?></td>
+         <td><?php WC($names[3]);?></td>
+         <td><?php Gender($names[3],$gender[0]);?></td>
+         <td><?php Gender($names[3],$gender[1]);?></td></tr>
         </tr>
 
-        <!-- <tr><td><a class = "table-links" href = "jl/jl.php">Jacob Ladder</a></td></tr> -->
+    
         <tr><td><a class = "table-links" href = "viewlist.php?home=BA&location=Blessed Assurance">Blessed Assurance</a></td> 
-        <td>14</td>
-         <td>14</td>
-         <td>8</td>
-         <td>6</td>
+        <td><?php TotalNew($names[4]);?></td>
+         <td><?php WC($names[4]);?></td>
+         <td><?php Gender($names[4],$gender[0]);?></td>
+         <td><?php Gender($names[4],$gender[1]);?></td></tr>
 
          <tr><td><a class = "table-links" href = "viewlist.php?home=WM&location=Widow's Mite">Widow's Mite</a></td> 
-        <td>17</td>
-         <td>13</td>
-         <td>10</td>
-         <td>7</td>
+         <td><?php TotalNew($names[5]);?></td>
+         <td><?php WC($names[5]);?></td>
+         <td><?php Gender($names[5],$gender[0]);?></td>
+         <td><?php Gender($names[5],$gender[1]);?></td></tr>
 
          
          <tr><td><a class = "table-links" href = "viewlist.php?home=JL&location=Jacob's Ladder">Jacob's Ladder</a></td> 
-            <td>21</td>
-             <td>21</td>
-             <td>12</td>
-             <td>9</td>
+         <td><?php TotalNew($names[6]);?></td>
+         <td><?php WC($names[6]);?></td>
+         <td><?php Gender($names[6],$gender[0]);?></td>
+         <td><?php Gender($names[6],$gender[1]);?></td></tr>
     
 
 </tr>

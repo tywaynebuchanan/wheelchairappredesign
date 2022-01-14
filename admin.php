@@ -4,7 +4,16 @@ include('templates/admin.nav.php');
 include('templates/hero.php');
 include('templates/header.php');
 
+$query = mysqli_query($conn, "SELECT * FROM tblusers ");
+$count_users = mysqli_num_rows($query);
 ?>
+
+<div class="back-btn">
+  <a href="adduser.php" class="logout-btn"><i class="fas fa-user"></i> Add User</a>
+  <div class="btn-end">
+  <p><strong>User Count:</strong> <?php echo $count_users?></p>
+  </div>
+</div>
 
 <section class="section-table">
     <div class="table-info container">
@@ -13,10 +22,9 @@ include('templates/header.php');
                 <tr>
                     <td>First Name</td>
                     <td>Last Name</td>
-                    <td>Password</td>
                     <td>Role</td>
-                    <td>Time Logged In</td>
-                    <td>Time Logged Out</td>
+                    <!-- <td>Time Logged In</td>
+                    <td>Time Logged Out</td> -->
                     <td>Active</td>
                     <td colspan="3">Action</td>
                 </tr>
@@ -24,10 +32,7 @@ include('templates/header.php');
 
 <?php 
 
-    $query = mysqli_query($conn, 
-    "SELECT tblusers.id,tblusers.username,tblusers.firstname,tblusers.lastname,tblusers.password,tblusers.role
-    ,tblusers.isActive,tbllogged.username,tbllogged.timeloggedin,tbllogged.timeloggedout,tbllogged.userid FROM tblusers 
-    LEFT JOIN tbllogged ON tblusers.id = tbllogged.userid");
+  
 
     if($query->num_rows > 0){
         while($row = mysqli_fetch_assoc($query))
@@ -38,18 +43,15 @@ include('templates/header.php');
             $lastname = $row['lastname'];
             $password = $row['password'];
             $role = $row['role'];
-            $timein = $row['timeloggedin'];
-            $timeout = $row['timeloggedout'];
+            // $timein = $row['timeloggedin'];
+            // $timeout = $row['timeloggedout'];
             $active = $row['isActive'];
             // $id = $row['id'];
             echo'  <tbody>
             <tr>
                 <td>'.$firstname.'</td>
                 <td>'.$lastname.'</td>
-                <td><input type ="password" class = "pass" value ='.$password.' disabled></td>
                 <td>'.$role.'</td>
-                <td>'.((!empty($timein))?date("Y-m-d h:i:sa"):"Not logged in").'</td>
-                <td>'.((!empty($timeout))?date("Y-m-d h:i:sa"):"Not Logged out").'</td>
                 <td>'.$active.'</td>
                 <td>
                 <div class = "tooltip">
@@ -71,7 +73,7 @@ include('templates/header.php');
                 <td>
                 <div class = "tooltip">
                 <span class="tooltiptext">Edit User</span>
-                <a href="admin.edit.php?iusername='.$username.'"><i class="fas fa-user-edit"></i></a>
+                <a href="admin.edit.php?username='.$username.'"><i class="fas fa-user-edit"></i></a>
                 </div>
                 </td>
             </tr>

@@ -1,6 +1,7 @@
 <?php include ('sessions/session.php');
 include('templates/header.php');
 include('templates/navbar.php');
+include('processes/summary.php');
 
 ?>
 

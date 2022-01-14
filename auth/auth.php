@@ -50,7 +50,6 @@ if(isset($_POST['submit']))
             $_SESSION['name'] = $name;
             header("Location:".$link."");
             $time = time();
-            // $sql = mysqli_query($conn,"UPDATE tblusers set timeloggedin =now() where username = '$username'");
             $sql2 = mysqli_query($conn,"INSERT INTO tbllogged (username,timeloggedin,userid) VALUES ('$username','$time','$id')");
 
         }else{

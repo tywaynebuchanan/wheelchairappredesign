@@ -42,16 +42,22 @@
                        </select>
                     </div>
                     <div class="input">
-                        <label for="condition">Condition</label>
-                       <select name="condition" id="">
+                        <label for="condition">Disability</label>
+                       <select name="condition" id="condition">
+       
+                       </select>
+                    </div>
+                    <!-- <div class="input">
+                        <label for="condition">Disability 2</label>
+                       <select name="condition" id="condition2">
                            <option value="CP">CP</option>
                            <option value="MC">MC</option>
                        </select>
-                    </div>
+                    </div> -->
     
                     <div class="sub-btn">
                         <input type="submit" name = "submit" value = "Submit" class = "submit-btn c-main">
-                        <input type="cancel" name = "cancel" value = "Cancel" class = "submit-btn c-grey">
+                        <input type="button" name = "cancel" value = "Cancel" class = "submit-btn c-danger">
                     </div>
                   
                 </form>
@@ -60,4 +66,5 @@
         
     </section>
 
+   
 </main>

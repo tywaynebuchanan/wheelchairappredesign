@@ -213,6 +213,9 @@ body{
 {
     background-color: var(--danger);
 }
+.c-light{
+    color: white;
+}
 .message
 {
     width: 100%;
@@ -324,6 +327,8 @@ body{
 .change-form input{
     border: none;
     outline:none;
+   
+
 }
 
 
@@ -441,9 +446,13 @@ tbody{
 
 .btn-end
 {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+   display: flex;
+   
+}
+
+.btn-end p
+{
+    padding: .5rem;
 }
 
 
@@ -471,7 +480,7 @@ tbody{
   grid-template-columns: 1fr;
    justify-content: center;
    align-items: center;
-   margin-bottom: 500px;
+   margin-bottom: auto;
 }
 
 .nav-btns
@@ -661,3 +670,28 @@ td .pass
   .c-d{
     color:var(--danger);
   }
+
+  input[type = text]
+  {
+    width: 100%;
+    margin: .5rem 0;
+    padding: 1rem .5rem;
+    outline: none;
+    border: none;
+    border-radius: 5px;
+    /* border: 1px solid #222222; */
+  }
+
+  select,input[type = email]
+{
+    width: 100%;
+    margin: .5rem 0;
+    padding: 1rem .5rem;
+    outline: none;
+    border: none;
+    border-radius: 5px;
+    /* border: 1px solid #222222; */
+   
+}
+
+  

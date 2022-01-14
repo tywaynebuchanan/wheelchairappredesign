@@ -24,7 +24,10 @@ $_SESSION['location'] = $location;
 <?php 
 
 $query = mysqli_query($conn,"SELECT * FROM tblresidentdata WHERE location1 = '$home' AND gender ='$gender'");
-$count = mysqli_num_rows($query);
+$query_count = mysqli_query($conn, "SELECT * from tblresidentdata WHERE gender = 'Male' and location1 = '$home' AND status != 'Deceased'");
+$count = mysqli_num_rows($query_count);
+
+
 
 ?>
 
@@ -32,7 +35,6 @@ $count = mysqli_num_rows($query);
 <a href="viewlist.php?home=<?php echo $home?>&location=<?php echo $location?>" class="logout-btn"><i class="fas fa-undo"></i> Refresh</a>
 <a href="filterdata.php?home=<?php echo $home?>&location=<?php echo $location?>&gender=Male" id="btn" class="logout-btn"><i class="fas fa-mars"></i> Male</a>
 <a href="filterdata.php?home=<?php echo $home?>&location=<?php echo $location?>&gender=Female" id="btn" class="logout-btn"><i class="fas fa-venus"></i> Female</a>
-<a href="filterdata.php?home=<?php echo $home?>&location=<?php echo $location?>&wheelchair=Yes" id="btn" class="logout-btn"><i class="fas fa-wheelchair"></i> In WC</a>
 <a href="testpdf.php?home=<?php echo $home?>&location=<?php echo $location?>&gender=<?php echo $gender?>" id="btn" class="logout-btn"><i class="fas fa-print"></i>Print</a>
 <div class="btn-end">
 <p><?php echo $gender?> Count:<?php echo $count?></p>
@@ -50,6 +52,7 @@ $count = mysqli_num_rows($query);
           <td>First Name</td>
           <td>Last Name</td>
           <td>Gender</td>
+          <td>Mobility</td>
           <td>Location</td>
           <td>Age</td>
           <td colspan = '3'>Action</td>
@@ -68,11 +71,15 @@ $count = mysqli_num_rows($query);
                   $age = $row_data['age'];
                   $gender = $row_data['gender'];
                  $id = $row_data['id'];
+                 $isMobile = $row_data['wheelchairbound'];
+                 $deceased = $row_data['status'];
                  
 
-                  echo '<tr><td>'.$firstname.'</td><td>'.$lastname.'</td><td>'.$gender.'</td><td>'.$location.'</td><td>'.$age.'</td>
-                  <td><a class = "info-btn c-success" href = "viewresidents.php?id='.$id.'&home='.$home.'&location='.$location.'">View</a></td><td><a class = "info-btn c-primary" href ="../edit.php?edit='.$id.'">Edit</a></td><td>
-                  <a class = "info-btn c-info" href ="../repairdata.php?repair='.$id.'">Repairs</a></td></tr>';
+                  echo  (($deceased !='Deceased')?'<tr><td>'.$firstname.'</td><td>'.$lastname.'</td><td>'.$gender.'</td><td>'.(($isMobile =='Yes')?'<i class="fas fa-wheelchair"></i>':'<i class="fas fa-walking"></i>').'</td><td>'.$location.'</td><td>'.$age.'</td>
+                  <td><a class = "info-btn c-success" href = "viewresidents.php?id='.$id.'&home='.$home.'&location='.$location.'"><i class="far fa-eye"></i></a></td><td><a class = "info-btn c-primary" href ="../edit.php?edit='.$id.'"><i class="fas fa-user-edit"></i></a></td><td>
+                  <a class = "info-btn c-info" href ="../repairdata.php?repair='.$id.'"><i class="fas fa-tools"></i></a></td></tr>':'<tr class = "c-danger c-light"><td>'.$firstname.'</td><td>'.$lastname.'</td><td>'.$gender.'</td><td>'.(($isMobile =='Yes')?'<i class="fas fa-wheelchair"></i>':'<i class="fas fa-walking"></i>').'</td><td>'.$location.'</td><td>'.$age.'</td>
+                  <td><a class = "info-btn c-success" href = "viewresidents.php?id='.$id.'&home='.$home.'&location='.$location.'"><i class="far fa-eye"></i></a></td><td><a class = "info-btn c-primary" href ="../edit.php?edit='.$id.'"><i class="fas fa-user-edit"></i></a></td><td>
+                  <a class = "info-btn c-info" href ="../repairdata.php?repair='.$id.'"><i class="fas fa-tools"></i></a></td></tr>');
               }
             }else{
                 $_SESSION['message'] = "Unable to retrieve data";

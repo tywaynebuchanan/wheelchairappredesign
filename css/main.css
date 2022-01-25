@@ -9,6 +9,7 @@
     --danger: #dc3545;
     --msc-yellow: #E1C509;
     --body-color: #EFF5F3;
+    --success:#5CB85C;
 }
 *{
     padding: 0;
@@ -25,10 +26,48 @@ a{
     text-decoration: none;
 }
 
+fieldset
+{
+    border: 1px solid var(--main-color);
+    text-align: center;
+    border-radius: 10px;
+    margin-bottom: .5rem;
+    
+}
+
+.fieldset-info
+{
+    padding: 1.5rem;
+    display: flex;
+    /* align-items: center; */
+    justify-content: center;
+    flex-direction: column;
+}
+
+
+.fieldset-info p, h1{
+    /* margin: 10px; */
+    text-align: justify;
+}
+
+legend{
+    background-color: var(--msc-yellow);
+    color:var(--main-color);
+    padding: 5px 10px;
+    border-radius: 10px;
+    font-weight: 600;
+
+}
+
 body{
     font-family: 'Lato', sans-serif;
     font-family: 'Fira Sans', sans-serif;
     background-color: var(--body-color);
+}
+
+.center
+{
+    text-align: center;
 }
 
 .login-body-color
@@ -187,7 +226,7 @@ body{
    
 }
 
-.c-success{
+.csuccess{
     background-color: #5CB85C;
 }
 
@@ -203,11 +242,16 @@ body{
 {
     background-color: #222222;
 }
-
+.c-main-color
+{
+    color: var(--main-color);
+}
 .c-main
 {
     background-color: var(--main-color);
 }
+
+
 
 .c-danger
 {
@@ -292,6 +336,8 @@ body{
    font-weight: 600;
    border-radius: 10px;
    cursor: pointer;
+   border: none;
+   outline: none;
 }
 
 .section-hero
@@ -362,6 +408,7 @@ body{
 .section-info
 {
     padding: 1.5rem 0rem;
+    align-items: 10px; 
 }
 
 .boxes
@@ -374,7 +421,7 @@ body{
 .box{
     background-color: var(--main-color);
     border-radius: 5px;
-    padding: 1.2rem 3rem;
+    padding: .5rem 1rem;
     text-align: center;
     -webkit-box-shadow: -3px 1px 17px 7px rgba(32,75,123,0.1); 
     box-shadow: -3px 1px 17px 7px rgba(32,75,123,0.1);
@@ -466,12 +513,17 @@ tbody{
     align-items: center;
 }
 
+.resident-info p{
+    font-size: 1.2rem;
+}
+
 .col-1
 {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    margin-bottom: auto;
 }
 
 .col-2
@@ -506,7 +558,7 @@ tbody{
 {
     width: 475px;
     height: 525px;
-    object-fit: fit;
+    object-fit: cover;
     border-radius: 15px;
 }
 
@@ -522,9 +574,10 @@ tbody{
 {
     width: 125px;
     height: 125px;
-    object-fit: fit;
+    object-fit: cover;
     padding: .75rem;
     border-radius: 15px;
+    cursor: pointer;
 }
 
 /*Resident Form */
@@ -694,4 +747,69 @@ td .pass
    
 }
 
+
+.showPdf
+{
+    display: none;
+}
+
+/*Modal CSS */
+
+.modal 
+{
+    display: none;
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content
+{
+    margin: 0 auto;
+  padding: 10px 20px;
+  border: 1px solid #888;
+ width: 200px;
+ border-radius: 10px;
+ display: flex;
+ align-items: center;
+ color: white;
+ z-index: 1; /* Sit on top */
+ position: absolute; /* Stay in place */
+ right: 5%;
+ top: 22%;
+ background-color: var(--main-color);
+ -webkit-box-shadow: 1px 5px 15px 5px rgba(0,0,0,0.47); 
+box-shadow: 1px 5px 15px 5px rgba(0,0,0,0.47);
+}
+
+.close {
+    color: var(--dark-grey-one);
+    font-size: 30px;
+    font-weight: bold;
+  }
+
+  .close:hover,
+  .close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  .hideMessage
+  {
+    animation: cssAnimation 5s forwards;
+  }
   
+  @keyframes cssAnimation {
+    0%   {opacity: 1;}
+    90%  {opacity: 1;}
+    100% {opacity: 0;}
+}

@@ -6,8 +6,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/main.css">
+    <link rel="shortcut icon" href="images/favicon-96x96.png" type="image/x-icon">
     <script src="https://kit.fontawesome.com/3ca45502f4.js" crossorigin="anonymous"></script>
-    <!-- <script src="/js/main.js" defer></script> -->
+    <script src="js/main.js" defer></script>
     <title>WheelChair Management System </title>
 </head>
 

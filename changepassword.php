@@ -1,7 +1,12 @@
 <?php include('sessions/session.php');
 include('templates/header.php');
 include('templates/navbar.php');
-
+?>
+<script>
+    
+  
+</script>
+<?php
 if(isset($_POST['submit']))
 {
     if(empty($_POST['newpassword']) && empty($_POST['confirmpassword']))
@@ -24,14 +29,14 @@ if(isset($_POST['submit']))
         if($rows > 0)
         {
             $update_query = mysqli_query($conn, "UPDATE tblusers set password = '$confirmpassword', IschangedPassword = 'Yes' WHERE username = '$login_session'");
-            header('Location: myaccount.php');
-            $_SESSION['msg-color'] = "success";
-            $_SESSION['message'] = "Password Updated!.";
+           
+            header('Location: myaccount.php?message=Password Updated!');
+          
+        
            
         }else{
-            header('Location: myaccount.php');
-            $_SESSION['msg-color'] = "error";
-            $_SESSION['message'] = "Password Failed";
+            header('Location: myaccount.php?message=Unable to update Password!');
+          
         }
     }
 }
@@ -77,7 +82,13 @@ if(isset($_POST['submit']))
        </main>
     </body>
     <?php include("templates/footer.php")?>
+
+
+ <?php echo $message?>
+
+
 </html>
+
 
 
 

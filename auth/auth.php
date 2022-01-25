@@ -34,6 +34,8 @@ if(isset($_POST['submit']))
         $isChangedPassword = $data['IschangedPassword'];
         $passkey = $data['passKey'];
         $name = $data['firstname']."".$data['lastname'];
+        $home = $data['home'];
+        $dbuser = $data['username'];
         
        
         if($role == 'Administrator' && $isActive == 'YES' )
@@ -42,15 +44,19 @@ if(isset($_POST['submit']))
         }else if($role == 'Viewer' && $isActive == 'YES' && $isChangedPassword == 'Yes')
         {
             $link = 'dashboard.php';
+        }else if($role == 'Nurse' && $isActive == 'YES' && $isChangedPassword == 'Yes' && $home == 'MFH')
+        {
+            $link = 'addnursesnotes.php';
         }
 
         if($rows === 1)
         {
             $_SESSION['login_user'] = $username;
-            $_SESSION['name'] = $name;
-            header("Location:".$link."");
+           $_SESSION['name'] = $name;
+           $_SESSION['home'] = $home;
             $time = time();
-            $sql2 = mysqli_query($conn,"INSERT INTO tbllogged (username,timeloggedin,userid) VALUES ('$username','$time','$id')");
+            header("Location:".$link."");
+            $sql2 = mysqli_query($conn,"INSERT INTO `tbllogged` (username,time,userid) VALUES ('1','2','2')");
 
         }else{
             $_SESSION['message'] = "Incorrect Login information!";

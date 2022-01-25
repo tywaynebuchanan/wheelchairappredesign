@@ -16,7 +16,7 @@
                    unset($_SESSION['message']);
                     } ?>
                         <div class="change-form">
-                            <form action="adduser.php" method="post">
+                            <form action="adduser.php" method="POST">
 
                                 <div class="change-row">
                                 
@@ -26,7 +26,7 @@
                                 </div>
                                 <div class="change-row">
                                 <input type="password" name="password" id="" class="contact-input" placeholder="Password">
-                                    <input type="password" name="confirmpassword" id="" class="contact-input" placeholder="Confirm Password">
+                                <input type="password" name="confirmpassword" id="" class="contact-input" placeholder="Confirm Password">
                                 </div>
                                 <small>Password should have 1 upper case, one lower case</small>
                                 <div>
@@ -49,7 +49,7 @@
                                
                                 <div class="change-row">
                                     <a href="admin.php" class="submit-btn c-danger">Cancel</a>
-                                    <input type="submit" value="Save Changes" name = "submit" class="submit-btn c-main">
+                                    <input type="submit"  name = "submit" value="Save Changes"class="submit-btn c-main">
                                    
                                 </div>
                             </form>

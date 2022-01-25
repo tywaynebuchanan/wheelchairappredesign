@@ -1,11 +1,24 @@
 <?php 
 include('sessions/session.php');
+include('templates/header.php');
 include('templates/admin.nav.php');
 include('templates/hero.php');
-include('templates/header.php');
+if($_GET){
+    echo "<div class ='container'>
+    <div class = 'modal-content hideMessage'>
+    ".$_GET['message']."
+    </div>
+    </div>";   
+    
+}
+
+passwordReset();
+activeUser();
 
 $query = mysqli_query($conn, "SELECT * FROM tblusers ");
 $count_users = mysqli_num_rows($query);
+
+
 ?>
 
 <div class="back-btn">
@@ -47,6 +60,7 @@ $count_users = mysqli_num_rows($query);
             // $timeout = $row['timeloggedout'];
             $active = $row['isActive'];
             // $id = $row['id'];
+           
             echo'  <tbody>
             <tr>
                 <td>'.$firstname.'</td>
@@ -56,14 +70,14 @@ $count_users = mysqli_num_rows($query);
                 <td>
                 <div class = "tooltip">
                 <span class="tooltiptext">Change Password</span>
-                <a href="admin.changepassword.php?username='.$username.'"><i class="fas fa-key"></i></a>
+                <a href="admin.function.php?username='.$username.'"><i class="fas fa-key"></i></a>
                 </div>
                 
                 </td>
                 <td>
                 <div class = "tooltip">
                 <span class="tooltiptext">Active User</span>
-                <a href="admin.changepassword.php?username='.$username.'">
+                <a href="admin.function.php?username='.$username.'">
                 '.(($active =='YES')?'<i class="fas fa-user-plus c-s"></i>.':'<i class="fas fa-user-minus c-d"></i>').'
                 </a>
                 </div>

@@ -1,4 +1,4 @@
-<?php include('processes/summary.php');
+<?php 
 
 $males = ['tblresidentdata','gender','Male'];
 $residents = 'tblresidentdata';
@@ -51,6 +51,7 @@ function res_count($table){
 <section class="section-info">
 
     <div class="container">
+    <div class="heading-primary center">Population Summary</div>
     <div class="boxes">
     <div class="box">
         <h3>Total Residents</h3>
@@ -79,8 +80,102 @@ function res_count($table){
 
 </section>
 
+<section class="section-info">
+
+    <div class="container">
+    <div class="heading-primary center">Resident Information Summary</div>
+    <div class="boxes">
+    <div class="box">
+        <h3>Number of Tube Fed</h3>
+        10</div>
+        
+
+
+        <div class="box">
+        <h3>Diaper Usage</h3>
+        <i class="fas fa-baby"></i> 2000 </div>
+
+         <div class="box">
+        <h3># of Residents wearing diapers</h3>
+        <i class="fas fa-baby"></i>
+        100 </div>
+    </div>
+        
+
+</div>
+
+</section>
+
+<div class="section-table">
+    <div class="table-info container">
+        <table>
+           <thead>
+               <tr>
+                   <td>Name of Tube</td>
+                   <td>Type of Tube</td>
+                   <td>Size of Tube</td>
+                   <td>Totals</td>
+               </tr>
+           </thead>
+           <tbody>
+               <tr>
+                   <td></td>
+                   <td></td>
+                   <td></td>
+                   <td></td>
+               </tr>
+               <tr>
+                   <td></td>
+                   <td></td>
+                   <td></td>
+                   <td></td>
+               </tr>
+               <tr>
+                   <td></td>
+                   <td></td>
+                   <td></td>
+                   <td></td>
+               </tr>
+           </tbody>
+        </table>
+    </div>
+</div>
+
+<section class="section-info">
+
+    <div class="container">
+    <div class="heading-primary center">Transfers and Deaths</div>
+    <div class="boxes">
+    <div class="box">
+        <h3>Deaths YTD</h3>
+        0</div>
+        <div class="box">
+        <h3>Placements YTD</h3>
+        20
+   </div>
+
+
+        <div class="box">
+        <h3>Internal Transfers</h3>
+        20 </div>
+
+         <div class="box">
+        <h3>Pending Placements</h3>
+        1</div>
+
+        <div class="box">
+        <h3>Pending Internal Transfers</h3>
+        2 </div>
+    </div>
+        
+
+</div>
+
+</section>
+
 <section class="section-table">
     <div class="table-info container">
+        <div class="heading-primary center">Summary of Apostolates</div>
     <table>
         <thead>
             <tr>
@@ -89,6 +184,9 @@ function res_count($table){
             <td># of Residents in WheelChair</td>
             <td># of Females</td>
             <td># of Males</td>
+            <td>Deaths YTD</td>
+            <td>Placements YTD</td>
+            <td>Int. Transfers</td>
            
         
         </tr>
@@ -99,26 +197,41 @@ function res_count($table){
             <td><?php TotalNew($names[0]);?></td>
          <td><?php WC($names[0]);?></td>
          <td><?php Gender($names[0],$gender[0]);?></td>
-         <td><?php Gender($names[0],$gender[1]);?></td></tr>
+         <td><?php Gender($names[0],$gender[1]);?></td>
+            <td>0</td>
+            <td>0</td>
+            <td>0</td>
+            </tr>
 
             <tr><td><a class = "table-links" href = "viewlist.php?home=MFH&location=My Father's House">My Father's House</a></td>
             <td><?php TotalNew($names[1]);?></td>
          <td><?php WC($names[1]);?></td>
          <td><?php Gender($names[1],$gender[0]);?></td>
-         <td><?php Gender($names[1],$gender[1]);?></td></tr>
+         <td><?php Gender($names[1],$gender[1]);?></td>
+         <td>0</td>
+            <td>0</td>
+            <td>0</td>
         </tr>
+        
             <tr><td><a class = "table-links" href = "viewlist.php?home=GOH&location=Gift of Hope">Gift of Hope</a>
         </td> 
         <td><?php TotalNew($names[2]);?></td>
          <td><?php WC($names[2]);?></td>
          <td><?php Gender($names[2],$gender[0]);?></td>
-         <td><?php Gender($names[2],$gender[1]);?></td></tr>
+         <td><?php Gender($names[2],$gender[1]);?></td>
+         <td>0</td>
+            <td>0</td>
+            <td>0</td>
+
         </tr>
             <tr><td><a class = "table-links" href = "viewlist.php?home=JER&location=Jerusalem">Jerusalem</a></td>
             <td><?php TotalNew($names[3]);?></td>
          <td><?php WC($names[3]);?></td>
          <td><?php Gender($names[3],$gender[0]);?></td>
-         <td><?php Gender($names[3],$gender[1]);?></td></tr>
+         <td><?php Gender($names[3],$gender[1]);?></td>
+         <td>0</td>
+            <td>0</td>
+            <td>0</td>
         </tr>
 
     
@@ -126,20 +239,33 @@ function res_count($table){
         <td><?php TotalNew($names[4]);?></td>
          <td><?php WC($names[4]);?></td>
          <td><?php Gender($names[4],$gender[0]);?></td>
-         <td><?php Gender($names[4],$gender[1]);?></td></tr>
+         <td><?php Gender($names[4],$gender[1]);?></td>
+         <td>0</td>
+            <td>0</td>
+            <td>0</td>
+        </tr>
 
          <tr><td><a class = "table-links" href = "viewlist.php?home=WM&location=Widow's Mite">Widow's Mite</a></td> 
          <td><?php TotalNew($names[5]);?></td>
          <td><?php WC($names[5]);?></td>
          <td><?php Gender($names[5],$gender[0]);?></td>
-         <td><?php Gender($names[5],$gender[1]);?></td></tr>
+         <td><?php Gender($names[5],$gender[1]);?></td>
+         <td>0</td>
+            <td>0</td>
+            <td>0</td>
+        </tr>
 
          
          <tr><td><a class = "table-links" href = "viewlist.php?home=JL&location=Jacob's Ladder">Jacob's Ladder</a></td> 
          <td><?php TotalNew($names[6]);?></td>
          <td><?php WC($names[6]);?></td>
          <td><?php Gender($names[6],$gender[0]);?></td>
-         <td><?php Gender($names[6],$gender[1]);?></td></tr>
+         <td><?php Gender($names[6],$gender[1]);?></td>
+         <td>0</td>
+            <td>0</td>
+            <td>0</td>
+        
+        </tr>
     
 
 </tr>

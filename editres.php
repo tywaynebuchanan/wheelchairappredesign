@@ -113,11 +113,6 @@ if($simple->num_rows > 0){
                                         <input type="text" class="disabled" name="lname" id="lname" value="<?php echo $doa?>" disabled>
                                         </div>
                                     </div>
-
-                                   
-                                            
-
-
                                 </div>
 
                                 <div class="change-row">

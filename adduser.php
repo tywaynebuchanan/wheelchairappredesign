@@ -3,8 +3,6 @@ include('sessions/session.php');
 include('templates/header.php');
 include('templates/admin.nav.php');
 
-
-
 if(isset($_POST['submit']))
 {
    $firstname = mysqli_escape_string($conn,$_POST['firstname']);
@@ -21,19 +19,14 @@ if(isset($_POST['submit']))
    VALUES('$username','$conpassword','$firstname','$lastname','$role','$changepassword','$active','MFH')") or die($query->error);
 
 if ($query) {
-
     header("Location: admin.php?message=User information was added");
-    
   } else {
     header("Location: admin.php?message=Unable to add user!");
   }
-
   $conn->close();
 }
 
-
 ?>
-
 <main>
     <section class="section-hero">
         <div class="hero">
@@ -42,7 +35,6 @@ if ($query) {
             </div>
         </div>
     </section>
-        
     <section class = "section-change-p">
                <div class="change-p-form">
                <?php if(!empty($_SESSION['message'])) {?>
@@ -91,9 +83,6 @@ if ($query) {
                        </div>
                </div>
            </section>
-       
-
-   
 </main>
 
 <?php include('templates/footer.php');?>

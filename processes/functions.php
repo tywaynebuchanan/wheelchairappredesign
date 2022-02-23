@@ -3,17 +3,19 @@
 
 function resident_data()
 {
-    include('queries.php');
     global $conn;
     $id = $_GET['id'];
 $res_query = mysqli_query($conn,"SELECT tblresidentdata.firstname,tblresidentdata.lastname,tblresidentdata.location,tblresidentdata.dob,
 tblresidentdata.age,tblresidentdata.gender,tblresidentdata.parish,tblresidentdata.fpo,tblresidentdata.doa,tblresidentdata.diabilities,
 tblresidentdata.status,tblresidentdata.tubefed,tblimages.image1,tblimages.image2,tblimages.image3,tblimages.image4,tblimages.evalform,tblchrist.id,tblchrist.baptised,
-tblchrist.date, tblchrist.locale, tblchrist.priest,tbltubeinfo.tubefed,tbltubeinfo.tube,tbltubeinfo.size 
+tblchrist.date, tblchrist.locale, tblchrist.priest,tbltubeinfo.tubefed,tbltubeinfo.tube,tbltubeinfo.size,
+tblrepairs.id,tblrepairs.details,tblrepairs.statusofrepair,tblrepairs.datecompleted
+
 FROM tblresidentdata 
 JOIN tblimages ON tblresidentdata.id = tblimages.id 
 JOIN tblchrist ON tblresidentdata.id = tblchrist.id
 JOIN tbltubeinfo ON tblresidentdata.id = tbltubeinfo.id
+LEFT JOIN tblrepairs ON tblresidentdata.id = tblrepairs.id
 WHERE tblresidentdata.id = '$id'");
 
 if($res_query->num_rows > 0){
@@ -35,17 +37,21 @@ if($res_query->num_rows > 0){
      $doa = $row['doa'];
      $dis = $row['diabilities'];
      $deceased = $row['status'];
-   $tubefed = $row['tubefed'];
+     $tubefed = $row['tubefed'];
    $baptised = $row['baptised'];
    $date = $row['date'];
    $baploc = $row['locale'];
    $priest = $row['priest'];
    $tubetype = $row['tube'];
    $tubesize = $row['size'];
+   $details = $row['details'];
+   $status = $row['statusofrepair'];
+   $datecom = $row['datecompleted'];
+   $repairid = $row['repairid'];
   }
 
   echo'
-  <div class = "showInfo" id = "showInfo">
+  <div id = "showInfo">
   <div class="container">
   
   <div class="resident-info">
@@ -64,6 +70,16 @@ if($res_query->num_rows > 0){
           <img src='.$image3.' alt="" class = "small-image">
           <img src='.$image4.'alt="" class = "small-image">
           </div>
+
+          <fieldset>
+          <legend>Repair Information</legend>
+          <div class = "fieldset-info">
+          '.(($repairid)?'<p><strong>Details: </strong>'.$details.'</p>
+          <p><strong>Status: </strong>'.$status.'</p>
+          <p><strong>Date Assigned: </strong>'.$datecom.'</p>': 
+          '<h1 class = "heading-primary">No repair data!</h1>').'
+          </div>
+          </fieldset>
       </div>
       
       <div class="col-2">
@@ -83,7 +99,7 @@ if($res_query->num_rows > 0){
           <p><strong>Date of Birth: </strong>'.$dob.'</p>
           <p><strong>Parish of Birth: </strong>' .$parish.'</p>
           <p><strong>Sex: </strong>'.$gender.'</p>
-          '.(($deceased == 'Deceased')?'<p><strong>Status:</strong>'.$deceased.'</p>':'').'
+          '.(($deceased == 'Deceased')?'<p class = "c-danger c-light"><strong>Status:</strong> '.$deceased.'</p>':'').'
               </div>
           </fieldset>
 
@@ -120,33 +136,31 @@ if($res_query->num_rows > 0){
           <p><strong>Date Baptised: </strong>'.$date.'</p>
           <p><strong>Location: </strong>'.$baploc.'</p>
           <p><strong>Priest: </strong>'.$priest.'</p>
-          </div>
+          </div
           </fieldset>
+
+          
           
           </div>
       </div>
   </div>
     </div>
   </div>
-    
-
-<div class="container showPdf" id="modal">
-    <div class = "modal">
-        <div>
+  
+  
+    <div class="container modal"  id="modal">
+        '.(($evalform)?'
         <button class="logout-btn" id="closemodal">Close Evaluation Form </button>
-        </div>
-    <embed src='.$evalform.' style = "width:100%; height:150vh;" type="application/pdf">
-    </embed>
-               
+        <embed src='.$evalform.' style = "width:100%; height:150vh;" type="application/pdf">
+        </embed>':'<button class="logout-btn" id="closemodal">Return to Profile</button>
+        <h1 class = "heading-primary">No Evaluation Form for '.$firstname.' '.$lastname.'</h1>').'         
     </div>
 
-</div>
-  
   
   ';
      
 }else{
-    echo "Unable to fetch data!";
+    echo "<h1 class = 'heading-primary'>Error 1: Unable to fetch data!</h1>";
    }
 
    

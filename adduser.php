@@ -14,11 +14,11 @@ if(isset($_POST['submit']))
    $conpassword = mysqli_escape_string($conn,$_POST['confirmpassword']);
    $role = mysqli_escape_string($conn,$_POST['role']);
    $active = mysqli_escape_string($conn,$_POST['active']);
-
+    $changepassword = 'Yes';
    $conpassword = sha1($_POST['confirmpassword']);
    $query = mysqli_query($conn, "INSERT into tblusers (username,password,firstname,lastname,role,
    IschangedPassword,isActive,home) 
-   VALUES('$username','$conpassword','$firstname','$lastname','$role','YES','$active','MFH')") or die($query->error);
+   VALUES('$username','$conpassword','$firstname','$lastname','$role','$changepassword','$active','MFH')") or die($query->error);
 
 if ($query) {
 

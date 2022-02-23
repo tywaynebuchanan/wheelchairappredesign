@@ -9,15 +9,15 @@ resident_data();
     // const backbtn = document.getElementById("back-btn");
     const closemodal = document.getElementById("closemodal");
     const open = document.getElementById("openmodal").addEventListener('click', ()=>{
-       showInfo.style.display = "none";
-    //    backbtn.style.display = "none";
-       modal.classList.remove('showPdf');
+        showInfo.classList.add('showInfo');
+        modal.style.display = "block";
+
 
     });
 
     closemodal.addEventListener('click',()=>{
-        showInfo.style.display = "block";
-        modal.classList.add('showPdf');
+      modal.style.display = "none";
+      showInfo.classList.remove('showInfo');
     })
 
     

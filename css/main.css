@@ -59,6 +59,11 @@ legend{
 
 }
 
+.sm
+{
+    font-size: 5rem;
+}
+
 body{
     font-family: 'Lato', sans-serif;
     font-family: 'Fira Sans', sans-serif;
@@ -79,6 +84,20 @@ body{
 {
     max-width: 1100px;
     margin: 0 auto;
+}
+
+.dash-container
+{
+    max-width: 1300px;
+    margin: 0 auto;
+}
+
+.grid-2
+{
+    display: grid;
+    grid-template-columns: 800px 500px;
+    justify-content: center;
+    align-items: center;
 }
 
 
@@ -284,11 +303,25 @@ body{
   font-size: 1rem;
 }
 
+.title
+{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    
+}
+
+.title p{
+    cursor: pointer;
+}
+
+
+
 /*Navbar CSS*/
 
 .header
 {
-    padding: 1rem 0;
+    padding: .1rem 0;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -409,6 +442,26 @@ body{
 {
     padding: 1.5rem 0rem;
     align-items: 10px; 
+   
+}
+
+.death .box{
+    background-color: white;
+    color: var(--main-color);
+}
+
+.death .boxes{
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+    justify-content:center;
+    align-items:flex-end;
+    margin-bottom: auto;
+   
+}
+
+.death .box{
+    width: 80%;
 }
 
 .boxes
@@ -556,10 +609,12 @@ tbody{
 }
 .main-image
 {
-    width: 475px;
-    height: 525px;
-    object-fit: cover;
+    max-width: 475px;
+    max-height: 525px;
+    object-fit:fill;
     border-radius: 15px;
+    width: auto;
+    height: auto;
 }
 
 .small-images
@@ -748,9 +803,9 @@ td .pass
 }
 
 
-.showPdf
+.showInfo
 {
-    display: none;
+    display: none
 }
 
 /*Modal CSS */
@@ -758,8 +813,8 @@ td .pass
 .modal 
 {
     display: none;
-    position: fixed; /* Stay in place */
-    z-index: 1; /* Sit on top */
+   /* position: fixed;  */
+    /* z-index: 1;  */
     left: 0;
     top: 0;
     width: 100%; /* Full width */
@@ -812,4 +867,63 @@ box-shadow: 1px 5px 15px 5px rgba(0,0,0,0.47);
     0%   {opacity: 1;}
     90%  {opacity: 1;}
     100% {opacity: 0;}
+}
+
+.badge_item
+{
+    position: relative;
+}
+
+.badge
+{
+    position: absolute;
+    top: -10px;
+    right: 10px;
+    width: 20px;
+    height: 20px;
+    background-color: var(--msc-yellow);
+    color: var(--main-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+}
+
+.badge_repair
+{
+    position: absolute;
+    top: 28px;
+    right: 23%;
+    width: 20px;
+    height: 20px;
+    background-color: var(--msc-yellow);
+    color: var(--main-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+}
+
+/*Edit Resident */
+
+.form-control
+{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    column-gap: 10px;
+}
+
+.field{
+    width: 100%;
+}
+
+.disabled
+{
+    cursor:no-drop;
+}
+
+.section-editres
+{
+    height: 100vh;
 }

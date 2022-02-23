@@ -8,6 +8,8 @@ if($_GET){
     </div>
     </div>";    
 }
+
+
 include('templates/myaccount.view.php');
 include('templates/footer.php');
 

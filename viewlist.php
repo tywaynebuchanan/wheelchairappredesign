@@ -78,7 +78,7 @@ $_SESSION['location'] = $location;
                  
               
                  echo (($deceased !='Deceased')?'<tr><td>'.$firstname.'</td><td>'.$lastname.'</td><td>'.$gender.'</td><td>'.(($isMobile =='Yes')?'<i class="fas fa-wheelchair"></i>':'<i class="fas fa-walking"></i>').'</td><td>'.$location.'</td><td>'.$age.'</td>
-                 <td><a class = "info-btn c-success" href = "viewresidents.php?id='.$id.'&home='.$home.'&location='.$location.'"><i class="far fa-eye"></i></a></td><td><a class = "info-btn c-primary" href ="../edit.php?edit='.$id.'"><i class="fas fa-user-edit"></i></a></td><td>
+                 <td><a class = "info-btn c-success" href = "viewresidents.php?id='.$id.'&home='.$home.'&location='.$location.'"><i class="far fa-eye"></i></a></td><td><a class = "info-btn c-primary" href ="editres.php?edit='.$id.'&home='.$home.'&location='.$location.'"><i class="fas fa-user-edit"></i></a></td><td>
                  <a class = "info-btn c-info" href ="../repairdata.php?repair='.$id.'"><i class="fas fa-tools"></i></a></td></tr>':'<tr class = "c-danger c-light"><td>'.$firstname.'</td><td>'.$lastname.'</td><td>'.$gender.'</td><td>'.(($isMobile =='Yes')?'<i class="fas fa-wheelchair"></i>':'<i class="fas fa-walking"></i>').'</td><td>'.$location.'</td><td>'.$age.'</td>
                  <td><a class = "info-btn c-success" href = "viewresidents.php?id='.$id.'&home='.$home.'&location='.$location.'"><i class="far fa-eye"></i></a></td><td><a class = "info-btn c-primary" href ="../edit.php?edit='.$id.'"><i class="fas fa-user-edit"></i></a></td><td>
                  <a class = "info-btn c-info" href ="../repairdata.php?repair='.$id.'"><i class="fas fa-tools"></i></a></td></tr>');

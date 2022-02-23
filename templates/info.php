@@ -45,13 +45,24 @@ function res_count($table){
     echo $res;
 }
 
+function ytd_deaths($home)
+{
+    global $conn;
+    $c = mysqli_query($conn, "SELECT * from tblresidentdata WHERE location1 = '$home' AND
+    status ='Deceased'");
+    $result = mysqli_num_rows($c);
+    echo $result;
+}
 
 
 ?>
 <section class="section-info">
 
-    <div class="container">
-    <div class="heading-primary center">Population Summary</div>
+    <div class="dash-container">
+    <div class="title">
+            <h1 class = "heading-primary">Population Summary</h1>
+            <p><i class="fas fa-cog"></i></p>
+        </div>
     <div class="boxes">
     <div class="box">
         <h3>Total Residents</h3>
@@ -80,7 +91,7 @@ function res_count($table){
 
 </section>
 
-<section class="section-info">
+<!-- <section class="section-info">
 
     <div class="container">
     <div class="heading-primary center">Resident Information Summary</div>
@@ -139,20 +150,126 @@ function res_count($table){
            </tbody>
         </table>
     </div>
-</div>
+</div> -->
 
-<section class="section-info">
 
-    <div class="container">
-    <div class="heading-primary center">Transfers and Deaths</div>
-    <div class="boxes">
-    <div class="box">
-        <h3>Deaths YTD</h3>
-        0</div>
+
+<section class="section-table grid-2">
+    <div class="table-info dash-container">
+        <div class="title">
+            <h1 class = "heading-primary">Summary of Apostolates</h1>
+            <p><i class="fas fa-cog"></i></p>
+        </div>
+        <table>
+            <thead>
+                <tr>
+                    <td>Apostolates</td>
+                <td># of Residents</td>
+                <td># of Residents in WheelChair</td>
+                <td># of Females</td>
+                <td># of Males</td>
+                <td>Deaths YTD</td>
+                <td>Placements YTD</td>
+                <td>Int. Transfers</td>
+            
+            
+            </tr>
+        </thead>
+                
+            <tbody>
+                <tr><td><a class = "table-links" href = "viewlist.php?home=SP&location=Sophie's Place">Sophie's Place</a></td>
+                <td><?php TotalNew($names[0]);?></td>
+            <td><?php WC($names[0]);?></td>
+            <td><?php Gender($names[0],$gender[0]);?></td>
+            <td><?php Gender($names[0],$gender[1]);?></td>
+                <td><?php ytd_deaths($names[0]);?></td>
+                <td>0</td>
+                <td>0</td>
+                </tr>
+
+                <tr><td><a class = "table-links" href = "viewlist.php?home=MFH&location=My Father's House">My Father's House</a></td>
+                <td><?php TotalNew($names[1]);?></td>
+            <td><?php WC($names[1]);?></td>
+            <td><?php Gender($names[1],$gender[0]);?></td>
+            <td><?php Gender($names[1],$gender[1]);?></td>
+            <td>0</td>
+                <td>0</td>
+                <td>0</td>
+            </tr>
+            
+                <tr><td><a class = "table-links" href = "viewlist.php?home=GOH&location=Gift of Hope">Gift of Hope</a>
+            </td> 
+            <td><?php TotalNew($names[2]);?></td>
+            <td><?php WC($names[2]);?></td>
+            <td><?php Gender($names[2],$gender[0]);?></td>
+            <td><?php Gender($names[2],$gender[1]);?></td>
+            <td>0</td>
+                <td>0</td>
+                <td>0</td>
+
+            </tr>
+                <tr><td><a class = "table-links" href = "viewlist.php?home=JER&location=Jerusalem">Jerusalem</a></td>
+                <td><?php TotalNew($names[3]);?></td>
+            <td><?php WC($names[3]);?></td>
+            <td><?php Gender($names[3],$gender[0]);?></td>
+            <td><?php Gender($names[3],$gender[1]);?></td>
+            <td>0</td>
+                <td>0</td>
+                <td>0</td>
+            </tr>
+
+        
+            <tr><td><a class = "table-links" href = "viewlist.php?home=BA&location=Blessed Assurance">Blessed Assurance</a></td> 
+            <td><?php TotalNew($names[4]);?></td>
+            <td><?php WC($names[4]);?></td>
+            <td><?php Gender($names[4],$gender[0]);?></td>
+            <td><?php Gender($names[4],$gender[1]);?></td>
+            <td>0</td>
+                <td>0</td>
+                <td>0</td>
+            </tr>
+
+            <tr><td><a class = "table-links" href = "viewlist.php?home=WM&location=Widow's Mite">Widow's Mite</a></td> 
+            <td><?php TotalNew($names[5]);?></td>
+            <td><?php WC($names[5]);?></td>
+            <td><?php Gender($names[5],$gender[0]);?></td>
+            <td><?php Gender($names[5],$gender[1]);?></td>
+            <td>0</td>
+                <td>0</td>
+                <td>0</td>
+            </tr>
+
+            
+            <tr><td><a class = "table-links" href = "viewlist.php?home=JL&location=Jacob's Ladder">Jacob's Ladder</a></td> 
+            <td><?php TotalNew($names[6]);?></td>
+            <td><?php WC($names[6]);?></td>
+            <td><?php Gender($names[6],$gender[0]);?></td>
+            <td><?php Gender($names[6],$gender[1]);?></td>
+            <td>0</td>
+                <td>0</td>
+                <td>0</td>
+            
+            </tr>
+        
+
+            </tr>
+
+
+            </tbody>
+        </table>
+    </div>  
+    
+    <div class="death">
+    <div>
+        <div class="heading-primary center">Transfers and Deaths</div>
+        <div class="boxes">
         <div class="box">
-        <h3>Placements YTD</h3>
-        20
-   </div>
+            <h3>Deaths YTD</h3>
+            <?php ytd_deaths($names[0])?></div>
+            <div class="box">
+            <h3>Placements YTD</h3>
+            20
+        </div>
 
 
         <div class="box">
@@ -167,111 +284,7 @@ function res_count($table){
         <h3>Pending Internal Transfers</h3>
         2 </div>
     </div>
-        
 
 </div>
-
-</section>
-
-<section class="section-table">
-    <div class="table-info container">
-        <div class="heading-primary center">Summary of Apostolates</div>
-    <table>
-        <thead>
-            <tr>
-                <td>Apostolates</td>
-            <td># of Residents</td>
-            <td># of Residents in WheelChair</td>
-            <td># of Females</td>
-            <td># of Males</td>
-            <td>Deaths YTD</td>
-            <td>Placements YTD</td>
-            <td>Int. Transfers</td>
-           
-        
-        </tr>
-    </thead>
-            
-        <tbody>
-            <tr><td><a class = "table-links" href = "viewlist.php?home=SP&location=Sophie's Place">Sophie's Place</a></td>
-            <td><?php TotalNew($names[0]);?></td>
-         <td><?php WC($names[0]);?></td>
-         <td><?php Gender($names[0],$gender[0]);?></td>
-         <td><?php Gender($names[0],$gender[1]);?></td>
-            <td>0</td>
-            <td>0</td>
-            <td>0</td>
-            </tr>
-
-            <tr><td><a class = "table-links" href = "viewlist.php?home=MFH&location=My Father's House">My Father's House</a></td>
-            <td><?php TotalNew($names[1]);?></td>
-         <td><?php WC($names[1]);?></td>
-         <td><?php Gender($names[1],$gender[0]);?></td>
-         <td><?php Gender($names[1],$gender[1]);?></td>
-         <td>0</td>
-            <td>0</td>
-            <td>0</td>
-        </tr>
-        
-            <tr><td><a class = "table-links" href = "viewlist.php?home=GOH&location=Gift of Hope">Gift of Hope</a>
-        </td> 
-        <td><?php TotalNew($names[2]);?></td>
-         <td><?php WC($names[2]);?></td>
-         <td><?php Gender($names[2],$gender[0]);?></td>
-         <td><?php Gender($names[2],$gender[1]);?></td>
-         <td>0</td>
-            <td>0</td>
-            <td>0</td>
-
-        </tr>
-            <tr><td><a class = "table-links" href = "viewlist.php?home=JER&location=Jerusalem">Jerusalem</a></td>
-            <td><?php TotalNew($names[3]);?></td>
-         <td><?php WC($names[3]);?></td>
-         <td><?php Gender($names[3],$gender[0]);?></td>
-         <td><?php Gender($names[3],$gender[1]);?></td>
-         <td>0</td>
-            <td>0</td>
-            <td>0</td>
-        </tr>
-
     
-        <tr><td><a class = "table-links" href = "viewlist.php?home=BA&location=Blessed Assurance">Blessed Assurance</a></td> 
-        <td><?php TotalNew($names[4]);?></td>
-         <td><?php WC($names[4]);?></td>
-         <td><?php Gender($names[4],$gender[0]);?></td>
-         <td><?php Gender($names[4],$gender[1]);?></td>
-         <td>0</td>
-            <td>0</td>
-            <td>0</td>
-        </tr>
-
-         <tr><td><a class = "table-links" href = "viewlist.php?home=WM&location=Widow's Mite">Widow's Mite</a></td> 
-         <td><?php TotalNew($names[5]);?></td>
-         <td><?php WC($names[5]);?></td>
-         <td><?php Gender($names[5],$gender[0]);?></td>
-         <td><?php Gender($names[5],$gender[1]);?></td>
-         <td>0</td>
-            <td>0</td>
-            <td>0</td>
-        </tr>
-
-         
-         <tr><td><a class = "table-links" href = "viewlist.php?home=JL&location=Jacob's Ladder">Jacob's Ladder</a></td> 
-         <td><?php TotalNew($names[6]);?></td>
-         <td><?php WC($names[6]);?></td>
-         <td><?php Gender($names[6],$gender[0]);?></td>
-         <td><?php Gender($names[6],$gender[1]);?></td>
-         <td>0</td>
-            <td>0</td>
-            <td>0</td>
-        
-        </tr>
-    
-
-</tr>
-
-
-        </tbody>
-    </table>
-    </div>    
 </section>
